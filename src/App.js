@@ -5,7 +5,6 @@ import './styles/reset.css'
 import './styles/App.css';
 import Display from './components/Display';
 
-// onClick, add 
 // Game logic --> array of all cards state, array of cards clicked state, score state, best score state
 // Make the Api call for default number of movie images, if player completes round increase the call number by 2 and restartGame
 // onclick check if that cards key is in clicked array, if it is notify the player they lost, restart game at default api call --> check if their current score is higher than their best score --> if it is set bestscore to the currentscore --> reset currentScore
@@ -14,11 +13,13 @@ import Display from './components/Display';
 
 function App() {
 
-  const [level, setLevel] = useState(10);
+  const [level, setLevel] = useState(8);
   const [loading, setLoading] = useState(true);
   const [apiData, setApiData] = useState([]);
   const [allCards, setAllCards] = useState([]);
   const [clickedCards, setClickedCards] = useState([]);
+  const [currentScore, setCurrentScore] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
 
 
   // Api Call
@@ -32,7 +33,7 @@ function App() {
       })
       .then(data => {
         setLoading(false);
-        console.log(data.data);
+        setAllCards([]);
         for (let i = 0; i < data.data.length; i++) {
           setAllCards(allCards => [...allCards, data.data[i].id]);
         }
@@ -46,12 +47,28 @@ function App() {
 
   // On Clicks
   const clickCard = (id) => {
-    if (clickedCards.includes(id)) return;
+    if (clickedCards.includes(id)) {
+      setClickedCards([]);
+      setLevel(8);
+      if (currentScore > bestScore) {
+        setBestScore(currentScore);
+      }
+    };
     setClickedCards(clickedCards => [...clickedCards, id]);
     shuffleCards();
+    setCurrentScore(currentScore + 1);
   }
 
   // Game Functions
+
+  useEffect(() => {
+    if (clickedCards.length == level) {
+      setAllCards([]);
+      setClickedCards([]);
+      setLevel(level + 2);
+    }
+  }, [clickedCards]);
+
   const shuffleCards = () => {
     let currentIndex = apiData.length;
     let randomIndex;

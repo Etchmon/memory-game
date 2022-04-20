@@ -1,6 +1,6 @@
 // -----DISPLAY COMPONENT-----
 const Display = props => {
-    console.log(props.clicked)
+    console.log(props.cards.length, props.clicked.length, props.clicked)
     return (
         <div className="display">
             {props.apiData.map((card) => (
