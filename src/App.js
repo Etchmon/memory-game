@@ -53,11 +53,14 @@ function App() {
       setLevel(8);
       if (currentScore > bestScore) {
         setBestScore(currentScore);
-      }
-    };
-    setClickedCards(clickedCards => [...clickedCards, id]);
-    // shuffleCards();
-    setCurrentScore(currentScore + 1);
+      };
+      setCurrentScore(0)
+    } else {
+      setClickedCards(clickedCards => [...clickedCards, id]);
+      // shuffleCards();
+      setCurrentScore(currentScore + 1);
+    }
+
   }
 
   // Game Functions
@@ -84,7 +87,7 @@ function App() {
 
   return (
     <div className="App">
-      <Display apiData={apiData} cards={allCards} clicked={clickedCards} onClick={clickCard} />
+      <Display apiData={apiData} cards={allCards} clicked={clickedCards} onClick={clickCard} currentScore={currentScore} bestScore={bestScore} />
     </div>
   );
 }
