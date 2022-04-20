@@ -48,7 +48,21 @@ function App() {
   const clickCard = (id) => {
     if (clickedCards.includes(id)) return;
     setClickedCards(clickedCards => [...clickedCards, id]);
+    shuffleCards();
   }
+
+  // Game Functions
+  const shuffleCards = () => {
+    let currentIndex = apiData.length;
+    let randomIndex;
+
+    while (currentIndex != 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      [apiData[currentIndex], apiData[randomIndex]] = [apiData[randomIndex], apiData[currentIndex]]
+    }
+  };
 
   return (
     <div className="App">
