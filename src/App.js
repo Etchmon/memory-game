@@ -38,6 +38,7 @@ function App() {
           setAllCards(allCards => [...allCards, data.data[i].id]);
         }
         setApiData(data.data);
+        document.body.querySelector('.main').style.gridTemplateColumns = `repeat(${level / 2}, 1fr)`;
       })
       .catch(err => {
         console.log(err);
@@ -55,7 +56,7 @@ function App() {
       }
     };
     setClickedCards(clickedCards => [...clickedCards, id]);
-    shuffleCards();
+    // shuffleCards();
     setCurrentScore(currentScore + 1);
   }
 
@@ -65,7 +66,7 @@ function App() {
     if (clickedCards.length == level) {
       setAllCards([]);
       setClickedCards([]);
-      setLevel(level + 2);
+      setLevel(level + 4);
     }
   }, [clickedCards]);
 
