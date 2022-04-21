@@ -26,11 +26,12 @@ html::-webkit-scrollbar {
 }
 
 .header {
-  font-size: 4rem;
+  font-size: 5rem;
   text-align: center;
   padding: 1rem;
-  background-color: #ee6c4d;
-  color: #293241;
+  background-color: #293241;
+  color: #ee6c4d;
+  letter-spacing: 5px;
 }
 
 .score {
@@ -43,6 +44,11 @@ html::-webkit-scrollbar {
   color: #e0fbfc;
 }
 
+.score span {
+  padding: 1rem;
+  border: 1px solid #e0fbfc;
+}
+
 .main {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -51,6 +57,18 @@ html::-webkit-scrollbar {
   padding: 2rem 5vw;
   justify-content: center;
   background-color: #e0fbfc;
+  transition: all 2s;
+}
+
+.main div {
+  box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.main div:hover {
+  transition: all 0.5s;
+  transform: scale(1.02);
 }
 
 img {
