@@ -67,7 +67,7 @@ function App() {
   // Game Functions
 
   useEffect(() => {
-    if (clickedCards.length == level) {
+    if (clickedCards.length === level) {
       setAllCards([]);
       setClickedCards([]);
       setLevel(level + 4);
@@ -78,7 +78,7 @@ function App() {
     let currentIndex = apiData.length;
     let randomIndex;
 
-    while (currentIndex != 0) {
+    while (currentIndex !== 0) {
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
 
@@ -86,11 +86,23 @@ function App() {
     }
   };
 
-  return (
-    <div className="App">
-      <Display apiData={apiData} cards={allCards} clicked={clickedCards} onClick={clickCard} currentScore={currentScore} bestScore={bestScore} />
-    </div>
-  );
+  // Returns
+  let content = <p>Loading...</p>;
+
+  if (!loading && apiData.length > 0) {
+    content = (
+      <div className="App">
+        <Display apiData={apiData} cards={allCards} clicked={clickedCards} onClick={clickCard} currentScore={currentScore} bestScore={bestScore} />
+      </div>
+    )
+  }
+  return content;
+
+
+  // <div className="App">
+  //   <Display apiData={apiData} cards={allCards} clicked={clickedCards} onClick={clickCard} currentScore={currentScore} bestScore={bestScore} />
+  // </div>
+
 }
 
 export default App;

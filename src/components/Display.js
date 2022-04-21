@@ -13,7 +13,7 @@ const Display = props => {
             <section className="main">
                 {props.apiData.map((card) => (
                     <div className="card" key={card.id} id={card.id} onClick={() => props.onClick(card.id)}>
-                        <img alt="photo" src={card.images.fixed_height_still.url}></img>
+                        <img alt="card" src={card.images.fixed_height_still.url}></img>
                     </div>
                 ))}
             </section>
