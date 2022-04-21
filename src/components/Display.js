@@ -7,8 +7,8 @@ const Display = props => {
                 <span>Memory Game</span>
             </section>
             <section className="score">
-                <span>Current:{props.currentScore}</span>
-                <span>Best:{props.bestScore}</span>
+                <span>Current: {props.currentScore}</span>
+                <span>Best: {props.bestScore}</span>
             </section>
             <section className="main">
                 {props.apiData.map((card) => (

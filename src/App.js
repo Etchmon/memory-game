@@ -24,7 +24,7 @@ function App() {
 
   // Api Call
   useEffect(() => {
-    fetch(`https://api.giphy.com/v1/gifs/search?q=puppy&api_key=7SufAUWSCErlvAp64NoituzCdcVwjAFJ&limit=${level}`)
+    fetch(`https://api.giphy.com/v1/gifs/search?q=meme&api_key=7SufAUWSCErlvAp64NoituzCdcVwjAFJ&limit=${level}`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Failed to fetch')
@@ -55,9 +55,10 @@ function App() {
         setBestScore(currentScore);
       };
       setCurrentScore(0)
+      shuffleCards();
     } else {
       setClickedCards(clickedCards => [...clickedCards, id]);
-      // shuffleCards();
+      shuffleCards();
       setCurrentScore(currentScore + 1);
     }
 
